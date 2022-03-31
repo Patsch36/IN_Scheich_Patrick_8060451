@@ -4,6 +4,7 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
         if strcmp(varargin{i},'function')
             func = varargin{i+1};
         elseif strcmp(varargin{i},'derivative')
+            derviateFlag = 0;
             dfunc = varargin{i+1};
         elseif strcmp(varargin{i},'startValue')
             x0 = varargin{i+1};
@@ -21,6 +22,12 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
     %% check for necessary parameters
     if ~exist('func','var')
         error('No valid function');
+    end
+
+    if ~exist('derivative','var')
+        dfunc = @numDiff;
+        derviateFlag = 1;
+        disp('No dervative function given. Using integrated algorithme for derivating value.')
     end
         
     if ~exist('x0','var')
@@ -72,27 +79,39 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
     
     
     for i = 1:maxIter
+
         f = func(xOld);
+
         if f < feps
             abortFlag = 'feps';
             break;
         end
-        df = dfunc(xOld);
+
+        df = 0;
+        if derviateFlag == 1
+            df = dfunc(func, xOld);
+        else
+            df = dfunc(xOld);
+        end
+
         if df == 0
             abortFlag = 'df = 0';
             break;
         end
+
         xNew = xOld - f/df; 
         if abs(xNew-xOld) < xeps
             abortFlag = 'xeps';
             break;
         end
+
         xOld = xNew;
         if strcmp(livePlot,'on')
            plot(ax1,i,xNew,'bo');
            semilogy(ax2,i,func(xNew),'rx');
            pause(0.05);
         end
+
     end
     
     
