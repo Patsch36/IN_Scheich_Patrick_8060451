@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>260</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Polynom
+--
+--
+#Operation(i: int): int
++getYValue(x)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>230</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Polynom
+--
+- Stepwidth: int
+- differenationMethod: String
+--
+Polynom(function)
+#Operation(i: int): int
++getYValue(x)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>480</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Polynom
+--
+--
+Polynom(polyCoefficients: [])
+#Operation(i: int): int
++getYValue(x)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>440</x>
+      <y>480</y>
+      <w>260</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>The list should contain all coeefficients
+ordered by their exponen: For example
+x^2 + 3x -3 should look like
+[1, 3, -3 ]
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
