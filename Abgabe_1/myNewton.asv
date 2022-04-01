@@ -29,8 +29,8 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
         derviateFlag = 1;
         differentationMethod = questdlg('Which Method schould be used for differentation?', ...
             'Choose your differentation-method of your choice', ...
-            'Forward Differentation', 'Backward- Differentation', 'Central- Differentation', 'Central- Differentation');
-        disp(['Using ', differentationMethod, ' for getting a derivate Functin']);
+            'Forward Differentation', 'Backward- Differentation', 'Central- Differentation');
+        displ
 
         % Convert long answers from question- dialog to parameter for diff- Method
         if strcmp(differentationMethod, 'Forward Differentation')
