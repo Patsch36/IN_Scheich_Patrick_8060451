@@ -89,7 +89,7 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
 
         df = 0;
         if derviateFlag == 1
-            df = dfunc(func, xOld);
+            df = dfunc(func, xOld, 'central');
         else
             df = dfunc(xOld);
         end
