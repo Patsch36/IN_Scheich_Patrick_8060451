@@ -4,7 +4,7 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
         if strcmp(varargin{i},'function')
             func = varargin{i+1};
         elseif strcmp(varargin{i},'derivative')
-            derviateFlag = 0;
+            derivateFlag = 0;
             dfunc = varargin{i+1};
         elseif strcmp(varargin{i},'startValue')
             x0 = varargin{i+1};
@@ -26,11 +26,13 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
 
     if ~exist('derivative','var')
         dfunc = @numDiff;
-        derviateFlag = 1;
+        derivateFlag = 1;
+
+        % Question dialog with central differentation as default options
         differentationMethod = questdlg('Which Method schould be used for differentation?', ...
             'Choose your differentation-method of your choice', ...
             'Forward Differentation', 'Backward- Differentation', 'Central- Differentation', 'Central- Differentation');
-        disp(['Using ', differentationMethod, ' for getting a derivate Functin']);
+        disp(['Using ', differentationMethod, ' for getting a derivate Function']);
 
         % Convert long answers from question- dialog to parameter for diff- Method
         if strcmp(differentationMethod, 'Forward Differentation')
@@ -103,7 +105,7 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
         end
 
         df = 0;
-        if derviateFlag == 1
+        if derivateFlag == 1
             df = dfunc(func, xOld, differentationMethod);
         else
             df = dfunc(xOld);

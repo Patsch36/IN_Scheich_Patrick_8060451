@@ -4,15 +4,14 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>730</x>
+      <x>720</x>
       <y>260</y>
       <w>210</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Polynom
 --
 --
-#Operation(i: int): int
 +getYValue(x)
 --
 </panel_attributes>
@@ -21,18 +20,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
+      <x>950</x>
       <y>230</y>
       <w>210</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Polynom
+    <panel_attributes>differentiatePolynom
 --
 - Stepwidth: int
 - differenationMethod: String
 --
-Polynom(function)
-#Operation(i: int): int
+Polynom(function, stepwidth:int)
++changeFunction(function)
 +getYValue(x)
 --
 </panel_attributes>
@@ -41,7 +40,7 @@ Polynom(function)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>730</x>
+      <x>720</x>
       <y>480</y>
       <w>210</w>
       <h>80</h>
@@ -50,7 +49,7 @@ Polynom(function)
 --
 --
 Polynom(polyCoefficients: [])
-#Operation(i: int): int
++changeCoefficients(Coefficients:[])
 +getYValue(x)
 --
 </panel_attributes>
