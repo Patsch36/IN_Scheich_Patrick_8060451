@@ -1,4 +1,36 @@
 function [xZero, abortFlag, iters] = myNewton(varargin)
+% myNewton - Calculates zeros of any function
+%
+% Syntax:  [xZero, abortFlag, iters] = myNewton('function', @myPoly, 'startValue', 4, ...
+%    'maxIter', 100, 'feps', 1e-10, 'livePlot', 'on')
+%
+% Inputs:
+%    function - function of which zeroes should be calculated (Matlab function)
+%    derivative - derivation of function (Matlab function)                              Not necessary
+%    startValue - iteration start value for function (integer value)                    Not necessary
+%    maxIter - max amount of iteration (Break criteria for algorithm) (integer value)   Not necessary
+%    feps - difference between last two calculation (break criteria) (integer value)    Not necessary
+%    xeps - difference between last two zeroes (break criteria)  (integer value)        Not necessary
+%    livePlot - live plotting of values ('on', 'off')                                Not necessary
+%
+% Outputs:
+%    xZero - zero-point
+%    abortFlag - break criteria
+%    iters - needed iterations
+%
+% Example: 
+%    myNewton('function', @myPoly, 'startValue', 4, 'maxIter', 100, 'feps', 1e-10, 'livePlot', 'on')
+%
+% Other m-files required: none
+% Subfunctions: none
+% MAT-files required: none
+%
+
+% Author: Patrick Scheich- dual student Information Technology
+% email address: inf20126@lehre.dhbw-stuttgart.de
+% March 2022; Last revision: 1-April-2022
+
+%------------- BEGIN CODE --------------
     %% do the varargin
     for i = 1:nargin
         if strcmp(varargin{i},'function')
@@ -135,3 +167,5 @@ function [xZero, abortFlag, iters] = myNewton(varargin)
     iters = i;
     xZero = xNew;
 end
+
+%------------- END OF CODE --------------
