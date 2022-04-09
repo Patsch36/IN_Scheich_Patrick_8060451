@@ -51,6 +51,6 @@ toc
 lrmFigure = LRMObject.showModel();
 
 
-%% sho optimum in contour plot
+%% show optimum in contour plot
 optimumFigure = LRMObject.showOptimumInContour();
 

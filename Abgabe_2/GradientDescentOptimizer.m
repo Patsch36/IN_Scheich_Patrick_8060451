@@ -14,9 +14,9 @@ classdef GradientDescentOptimizer < matlab.mixin.SetGet
           
             % ========= YOUR CODE HERE =========
             % perform the varargin
-            for i = 1:nargin
+            for i = 1:2:nargin
                 if strcmp(varargin{i},'LearningRate')
-                    obj.learningRate varargin{i+1};
+                    obj.learningRate = varargin{i+1};
                 elseif strcmp(varargin{i},'MaxIterations')
                     obj.maxIterations = varargin{i+1};
                 end

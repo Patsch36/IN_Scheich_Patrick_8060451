@@ -15,6 +15,13 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             
             % ========= YOUR CODE HERE =========
             % perform the varargin
+            for i = 1:2:nargin
+                if strcmp(varargin{i},'Data')
+                    obj.trainingData = varargin{i+1};
+                elseif strcmp(varargin{i},'Optimizer')
+                    obj.optimizer = varargin{i+1}; 
+                end
+            end
             
             obj.initializeTheta();
         end
@@ -27,7 +34,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             % therefore use the hypothesis function as well
             % this calculation can be done by one line of code
             % returns the cost value J
-            
+            J = (sum((obj.hypothesis() - obj.trainingData.commandVar).^2))/(2 * m);
         end
         
         function hValue = hypothesis(obj)
@@ -37,6 +44,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             % compute the hypothesis values for each sample
             % therefore compute the matrix multiplication with X
             % this calculation can be done by one line of code
+            hValue = obj.theta(1) + obj.theta(2) * X;
             
         end
         
