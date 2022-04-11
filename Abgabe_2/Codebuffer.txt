@@ -1,0 +1,47 @@
+            h = figure('Name','Cost Function Area');
+            theta0_vals = linspace(50, 150, 100);
+            theta1_vals = linspace(0, 2, 100);
+            
+            % ========= YOUR CODE HERE =========
+            % compute the costs for each theta_vals tuple
+            % plot the costs with the surf command
+            % add x and y label
+            [X,Y] = meshgrid(theta0_vals, theta1_vals);
+            Cost = [ones(100, 1) ones(100, 1)];
+            %Cost = [ones(100, 1)];
+            for i = 1:100
+                obj.setTheta(theta0_vals(i), theta1_vals(i))
+                costbuffer = obj.costFunction();
+                %surf(X, Y, obj.costFunction())
+                %Cost(i) = costbuffer;
+                %Cost(i) = [costbuffer(1) costbuffer(2)];
+                Cost(i) = costbuffer(2);
+            end
+            surf(X, Y, Cost)
+
+
+
+
+
+for i = 1:maxIters
+                %   vectorized updaterule can be implemented in one line of code
+                % Derivation for theta_1
+                %temp_theta_1 = theta(1) - alpha * sum( (1/m) * (theta(1) + theta(2) * X(:,2) - y) );
+
+                % Derivation for thetea_2
+                %temp_theta_2 = theta(2) - alpha * sum( (1/m) * ( theta(1) + theta(2) * X(:,2) - y ) * theta(2)  );
+
+                %theta(1) = temp_theta_1;
+                %theta(2) = temp_theta_2;
+
+                temp1 = theta(1) - alpha*(sum(X*theta - y)/m);
+                temp2 = theta(2) - alpha*(sum((X*theta - y).*X(:,2))/m);
+                theta(1) = temp1;
+                theta(2) = temp2;
+
+                %   update theta property of linearRegressionModel (we want to call the cost function in the next step)
+                linearRegressionModel.setTheta(theta(1), theta(2));
+
+                %   compute current costs and save them to costOverIters
+                costOverIters(i) = linearRegressionModel.costFunction();
+            end

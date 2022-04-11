@@ -66,9 +66,8 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
                 end
             end
             contour(X, Y, Cost)
-            xticks(50:10:150);
             hold on;
-            plot(obj.thetaOptimum(1), obj.thetaOptimum(2), 'rx', 'MarkerSize',10, 'LineWidth',2)
+            plot(obj.thetaOptimum(1), obj.thetaOptimum(2), 'rx', 'MarkerSize',10, 'LineWidth',2, 
         end
         
         function h = showCostFunctionArea(obj)
