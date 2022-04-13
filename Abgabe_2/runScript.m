@@ -19,7 +19,7 @@ dataForLinearRegression = LinearRegressionDataFormatter('Data','TempearatureMeas
 
 %% create optimizer object
 % Optimized Value 1e7 instead of original 1e5
-gradientDescentOptimizer = GradientDescentOptimizer('LearningRate',9e-6,'MaxIterations',1e7);
+gradientDescentOptimizer = GradientDescentOptimizer('LearningRate',9e-6,'MaxIterations',1e5);
 
 
 %% create lineaer regression model object

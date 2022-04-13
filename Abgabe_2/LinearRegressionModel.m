@@ -59,6 +59,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             % add x and y label
             % add the optimum theta value to the plot (red X, MarkerSize: 10, LineWidth: 2)
             [X,Y] = meshgrid(theta0_vals, theta1_vals);
+            Cost = zeros(100);
             for i = 1:100
                 for j = 1:100
                     obj.setTheta(theta0_vals(j), theta1_vals(i))
@@ -66,9 +67,16 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
                 end
             end
             contour(X, Y, Cost)
+            xlabel('\theta_{0}');
+            ylabel('\theta_{1}');
             xticks(50:10:150);
             hold on;
             plot(obj.thetaOptimum(1), obj.thetaOptimum(2), 'rx', 'MarkerSize',10, 'LineWidth',2)
+
+            % Optional annotation for theta Optimum (If should be shown
+            % without marking the point)
+            %text = strcat('(', num2str(obj.thetaOptimum(1)), '; ', num2str(obj.thetaOptimum(2)), ')');
+            %annotation('textbox', [.625, .25, .1 .1], 'String', text,'FitBoxToText', 'on')
         end
         
         function h = showCostFunctionArea(obj)
@@ -76,7 +84,7 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
             theta0_vals = linspace(50, 150, 100);
             theta1_vals = linspace(0, 2, 100);
 
-            %Cost = [ones(100, 1) ones(100, 1)];
+            Cost = zeros(100);
             
             % ========= YOUR CODE HERE =========
             % compute the costs for each theta_vals tuple
@@ -90,6 +98,8 @@ classdef LinearRegressionModel < matlab.mixin.SetGet
                 end
             end
             surf(X, Y, Cost)
+            xlabel('\theta_{0}');
+            ylabel('\theta_{1}');
             
         end
         
