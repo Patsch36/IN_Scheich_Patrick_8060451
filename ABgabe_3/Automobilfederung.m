@@ -55,6 +55,7 @@ classdef Automobilfederung < handle
                     h = varargin{i+1};
                 else
                     warning("Invalid property: "+varargin{i});
+                end
                 
             end
             tout = zeros(ceil((tfinal-t)/h)+1,1);
@@ -71,6 +72,12 @@ classdef Automobilfederung < handle
                 % ========= YOUR CODE HERE =========
                 % calculate the slopes
                 % calculate the ynew
+                k1 = obj.rhs(t, y);
+                k2 = obj.rhs(t + (h/2),y + (h/2) * k1);
+                k3 = obj.rhs(t + (h/2), y + (h/2) * k2);
+                k4 = obj.rhs(t + h, y + (h * k3));
+                ynew = y + ((1/6) * k1* h) + ((1/3) * k2* h) + ((1/3) * k3* h) + ((1/6) * k4* h);
+
                 t = t + h;
                 y = ynew;
                 tout(step) = t;
@@ -101,13 +108,14 @@ classdef Automobilfederung < handle
     methods (Access = private)
         function calcInputMatixB(obj)
             % ========= YOUR CODE HERE =========
-            obj.B = [0; 0; 0; (obj.c1 / obj.m1) ]
+            obj.B = [0; 0; 0; (obj.c1 / obj.m1) ];
         end
         function calcSystemMartixA(obj)
             % ========= YOUR CODE HERE =========
             obj.A = [   0 1 0 0;
                         -(obj.c2 / obj.m2) -(obj.d2 / obj.m2) (obj.c2 / obj.m2) (obj.d2 / obj.m2);
-                        (obj.c2 / obj.m1) (obj.d2 / obj.m1) -((obj.c1 + obj.c2) / obj.m1) -(obj.d2 / obj.m1) ]
+                        0 0 0 1;
+                        (obj.c2 / obj.m1) (obj.d2 / obj.m1) -((obj.c1 + obj.c2) / obj.m1) -(obj.d2 / obj.m1) ];
         end
         function xdot = rhs(obj, t, x)
             x = x(:);
