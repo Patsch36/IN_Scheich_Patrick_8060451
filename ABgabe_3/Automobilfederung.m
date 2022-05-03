@@ -45,6 +45,17 @@ classdef Automobilfederung < handle
             for i = 1:2:nargin-1
                 % ========= YOUR CODE HERE =========
                 % perform the varargin: overwrite the defaults
+                if strcmp(varargin{i},'t0')
+                    t = varargin{i+1};
+                elseif strcmp(varargin{i},'tfinal')
+                    tfinal = varargin{i+1};
+                elseif strcmp(varargin{i},'y0')
+                    y = varargin{i+1};
+                elseif strcmp(varargin{i},'stepsize')
+                    h = varargin{i+1};
+                else
+                    warning("Invalid property: "+varargin{i});
+                
             end
             tout = zeros(ceil((tfinal-t)/h)+1,1);
             yout = zeros(ceil((tfinal-t)/h)+1,length(y));
@@ -90,11 +101,13 @@ classdef Automobilfederung < handle
     methods (Access = private)
         function calcInputMatixB(obj)
             % ========= YOUR CODE HERE =========
-            % obj.B = 
+            obj.B = [0; 0; 0; (obj.c1 / obj.m1) ]
         end
         function calcSystemMartixA(obj)
             % ========= YOUR CODE HERE =========
-            % obj.A = 
+            obj.A = [   0 1 0 0;
+                        -(obj.c2 / obj.m2) -(obj.d2 / obj.m2) (obj.c2 / obj.m2) (obj.d2 / obj.m2);
+                        (obj.c2 / obj.m1) (obj.d2 / obj.m1) -((obj.c1 + obj.c2) / obj.m1) -(obj.d2 / obj.m1) ]
         end
         function xdot = rhs(obj, t, x)
             x = x(:);
