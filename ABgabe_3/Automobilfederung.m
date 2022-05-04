@@ -51,6 +51,12 @@ classdef Automobilfederung < handle
                     tfinal = varargin{i+1};
                 elseif strcmp(varargin{i},'y0')
                     y = varargin{i+1};
+
+                    % yout always should be column vector, so it must be
+                    % transposed if isrow() is true
+                    if isrow(y)
+                        y = y(:);
+                    end
                 elseif strcmp(varargin{i},'stepsize')
                     h = varargin{i+1};
                 else
@@ -67,16 +73,18 @@ classdef Automobilfederung < handle
                 step = step + 1;
                 if t + h > tfinal
                     % ========= YOUR CODE HERE =========
-                    % h = 
+                    % Last calculation should always be at tfinal, never
+                    % above
+                    h = tfinal - t;
                 end
                 % ========= YOUR CODE HERE =========
                 % calculate the slopes
                 % calculate the ynew
                 k1 = obj.rhs(t, y);
-                k2 = obj.rhs(t + (h/2),y + (h/2) * k1);
-                k3 = obj.rhs(t + (h/2), y + (h/2) * k2);
-                k4 = obj.rhs(t + h, y + (h * k3));
-                ynew = y + ((1/6) * k1* h) + ((1/3) * k2* h) + ((1/3) * k3* h) + ((1/6) * k4* h);
+                k2 = obj.rhs(t + h/2,y + h/2 * k1);
+                k3 = obj.rhs(t + h/2, y + h/2 * k2);
+                k4 = obj.rhs(t + h, y + h * k3);
+                ynew = y + h * ( 1/6 * k1 + 1/3 * k2 + 1/3 * k3 + 1/6 * k4 );
 
                 t = t + h;
                 y = ynew;

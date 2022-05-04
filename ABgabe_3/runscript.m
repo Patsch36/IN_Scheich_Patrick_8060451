@@ -1,5 +1,5 @@
 %% runScript: 
-% runs the Automobilfederung model and visulaize the reults
+% runs the Automobilfederung model and visulaize the results
 %
 % Author: Jannik Wiessler
 % DHBW Stuttgart
@@ -24,13 +24,13 @@ model = Automobilfederung('m1', 25,...
 stepsizeStart = 0.005;
 stepsizeEnd = 0.05;
 stepsizeDelta = 0.005;
-for stepsize = stepsizeStart:stepsizeDelta:stepsizeEnd
-    model.sim('t0', 0,...
-        'tfinal', 3,...
-        'y0', [0; 0; 0; 0],...
-        'stepsize', stepsize);
-    model.visualizeResults();
-end
+% for stepsize = stepsizeStart:stepsizeDelta:stepsizeEnd
+%     model.sim('t0', 0,...
+%         'tfinal', 3,...
+%         'y0', [0 0 0 0],...
+%         'stepsize', stepsize);
+%     model.visualizeResults();
+% end
 
 model.sim('t0', 0, 'tfinal', 3, 'y0', [0; 0; 0; 0], 'stepsize', 0.04);
 model.visualizeResults();
