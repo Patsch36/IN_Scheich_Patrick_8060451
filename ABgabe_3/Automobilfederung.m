@@ -2,8 +2,6 @@ classdef Automobilfederung < handle
 
 % Automobilfederung - Calculates the VIbrations of a car's mass-sprind-damper
 %
-%
-%
 % Other m-files required: none
 % Subfunctions: sim, visualizeResults, calcSystemMartixA, claclInoutMatrixB, xdot
 % MAT-files required: none
