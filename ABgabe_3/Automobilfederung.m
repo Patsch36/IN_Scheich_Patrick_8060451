@@ -9,7 +9,7 @@ classdef Automobilfederung < handle
 
 % Author: Patrick Scheich- dual student Information Technology
 % email address: inf20126@lehre.dhbw-stuttgart.de
-% March 2022; Last revision: 1-April-2022
+% May 2022; Last revision: 13-May-2022
 
     properties
         c1 {mustBeNumeric}
